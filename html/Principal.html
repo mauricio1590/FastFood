@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastFood</title>
+    <link rel="stylesheet" href="../css/sidemenu.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="body-expanded" onload="cargarUsuario();">
+    <div id="sidemenu" class="menu-expanded">
+        <!--HEADER-->
+        <div id="header">
+            <div id="title"><span>Menú</span></div>
+            <div id="menu-btn">
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+                <div class="btn-hamburger"></div>
+            </div>
+        </div>
+        <!--PROFILE-->
+        <div id="profile">
+            <div id="photo"><img src="../icons/profilex200.png" alt=""></div>
+            <div id="name"><span>User</span></div>
+        </div>
+        <!--ITEMS-->
+        <div id="menu-items">
+            <div class="item">
+                <a href="#" onclick="listarCarta();">
+                    <div class="icon"><img src="../icons/carta-restaurante-2.png" alt=""></div>
+                    <div class="title">Carta</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#" onclick="listarPersonas();">
+                    <div class="icon"><img src="../icons/clientes.png" alt=""></div>
+                    <div class="title">Personas</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#" onclick="listarTipos();">
+                    <div class="icon"><img src="../icons/categorias.png" alt=""></div>
+                    <div class="title">Categorias</div>
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><img src="../icons/pedido.png" alt=""></div>
+                    <div class="title">Pedidos</div>
+                </a>
+            </div>
+            <div class="item-separator">
+                <!--SEPARADOR-->
+            </div>
+            <div class="item">
+                <a href="#">
+                    <div class="icon"><img src="../icons/icono-login.png" alt=""></div>
+                    <div class="title">Usuarios</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-container">
+        <div id="titulo">
+            FastFood
+        </div>
+        <div id="contenido">
+            <!--CONTENIDO-->
+            <form id="frm_persona" name="frm_persona">
+                <input type="hidden" value="1" id="idOp">
+                <input type="hidden" value="1" id="per_id">
+                <div id="conten">
+                    <div class="usuario">
+                        <div class="form-user-header">
+                            <h2>Persona</h2>
+                        </div>
+                        <div class="section-grid">
+                            <div class="col-x2-person">
+                                <div class="form-group">
+                                    <img src="../icons/profilex200.png" alt="" id="iconPersona">
+                                </div>
+                            </div>
+                            <div class="col-x2-person">
+                                <div class="form-group">
+                                    <label for="frm_persona">Cedula:</label>
+                                    <input type="text" id="per_cedula" required>
+                                </div>
+                            </div>
+                            <div class="col-x2-person">
+                                <div class="form-group">
+                                    <label for="frm_persona">Nombre 1:</label>
+                                    <input type="text" id="per_nombre1" required>
+                                </div>
+                            </div>
+                            <div class="col-x2-person">
+                                <div class="form-group">
+                                    <label for="frm_persona">Nombre 2:</label>
+                                    <input type="text" id="per_nombre2" required>
+                                </div>
+                            </div>
+                            <div class="col-x2-person">
+                                <div class="form-group">
+                                    <label for="frm_persona">Apellido 1:</label>
+                                    <input type="text" id="per_apellido1" required>
+                                </div>
+                            </div>
+                            <div class="col-x2-person">
+                                <div class="form-group">
+                                    <label for="frm_persona">Apellido 2:</label>
+                                    <input type="text" id="per_apellido2" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="section-grid">
+                            <div class="col-x2-person">
+                                <div class="form-group">
+                                    <label for="frm_persona">Teléfono:</label>
+                                    <table class="tabla-carta">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Teléfono</th>
+                                                <th>Observación</th>
+                                                <th>Opciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listaTelefonos">
+                                            <!--<tr>
+                                                <td><input type="radio" id="car_id1" name="grupoCarta" onclick="habilitarOpciones(1);"></td>
+                                                <td>1</td>
+                                                <td>Papas</td>
+                                                <td>$ 5.000,00</td>
+                                                <td>Contiene...</td>
+                                                <td>
+                                                    <a href="#openModal" onclick="verModalCarta('4040', '1');" class="ver not-active" id="btn_ver1" name="btn"><img class="icon" src="../icons/view.png" alt=""></a>
+                                                    <a href="#openModal" onclick="verModalCarta('2020', '1');" class="editar not-active" id="btn_editar1" name="btn"><img class="icon" src="../icons/edit.png" alt=""></a>
+                                                    <a href="#openModal" onclick="verModalCarta('3030', '1');" class="eliminar not-active" id="btn_eliminar1" name="btn"><img class="icon" src="../icons/delete.png" alt=""></a>
+                                                </td>
+                                            </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-x2-person">
+                                <div class="form-group">
+                                    <label for="frm_persona">Dirección:</label>
+                                    <table class="tabla-carta">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Dirección</th>
+                                                <th>Observación</th>
+                                                <th>Opciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="listaDirecciones">
+                                            <!--<tr>
+                                            <td><input type="radio" id="car_id1" name="grupoCarta" onclick="habilitarOpciones(1);"></td>
+                                            <td>1</td>
+                                            <td>Papas</td>
+                                            <td>$ 5.000,00</td>
+                                            <td>Contiene...</td>
+                                            <td>
+                                                <a href="#openModal" onclick="verModalCarta('4040', '1');" class="ver not-active" id="btn_ver1" name="btn"><img class="icon" src="../icons/view.png" alt=""></a>
+                                                <a href="#openModal" onclick="verModalCarta('2020', '1');" class="editar not-active" id="btn_editar1" name="btn"><img class="icon" src="../icons/edit.png" alt=""></a>
+                                                <a href="#openModal" onclick="verModalCarta('3030', '1');" class="eliminar not-active" id="btn_eliminar1" name="btn"><img class="icon" src="../icons/delete.png" alt=""></a>
+                                            </td>
+                                        </tr>-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="openModal" class="modalDialog">
+                <form id="frm_auxPersona" name="frm_auxPersona">
+                    <input type="hidden" value="1" id="idOp">
+                    <input type="hidden" value="1" id="aux_id">
+                    <div class="modal-header">
+                        <a href="#close" id="closeModal" title="Close" class="close">X</a>
+                        <h2 id="aux_titulo">Titulo</h2>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="frm_auxPersona" id="auxLabel">Nombre:</label>
+                            <input type="text" id="auxInputPrimary" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="frm_auxPersona">Descripción:</label>
+                        <textarea cols="40" name="auxDescripcion" spellcheck="true" id="auxDescripcion"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" value="btn_auxPersona" id="btn_auxPersona">
+                    </div>
+                </form>
+            </div>
+            <!--FIN CONTENIDO-->
+        </div>
+    </div>
+
+    <script>
+        const btn = document.querySelector('#menu-btn');
+        const menu = document.querySelector('#sidemenu');
+        btn.addEventListener('click', e => {
+            menu.classList.toggle("menu-expanded");
+            menu.classList.toggle("menu-collapsed");
+
+            document.querySelector('body').classList.toggle('body-expanded');
+            document.querySelector('body').classList.toggle('body-collapsed');
+        });
+    </script>
+    <script src="../resources/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../AJAX/controllerAJX.js"></script>
+    <script type="text/javascript" src="../js/usuarios.js"></script>
+    <script type="text/javascript" src="../js/general.js"></script>
+    <script type="text/javascript" src="../js/carta.js"></script>
+    <script type="text/javascript" src="../js/tipo.js"></script>
+    <script type="text/javascript" src="../js/persona.js"></script>
+    <script type="text/javascript" src="../js/telefono.js"></script>
+    <script type="text/javascript" src="../js/direccion.js"></script>
+</body>
+
+</html>
