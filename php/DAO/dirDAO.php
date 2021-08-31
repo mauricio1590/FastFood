@@ -23,7 +23,7 @@ function updateDIR($json)
     include_once './resources/conexion.php';
 
     try {
-        $update = "UPDATE direccion SET
+        $update = "UPDATE  direccion SET
                 dir_direccion = '" . $json['information']['aux_texto'] . "',
                 dir_observaciones = '" . $json['information']['aux_observaciones'] . "',
                 per_id='" . $json['information']['per_id'] . "'
