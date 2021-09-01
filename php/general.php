@@ -35,12 +35,12 @@ include_once "Controller/controllerMOV.php";
 5050 = VALIDAR
  */
 $json = [
-    'idOp'=>'3030' ,
+    'idOp'=>'4040' ,
     'idUrl'=> "707070",
     'information' => [
-    'aux_id'=>'8',
+    'aux_id'=>'13',
     'aux_texto'=>'calle 2 av 5',
-    'per_id'=>'1',
+    'per_id'=>'4',
     'aux_observaciones'=>'DIRECCION NUEVA',
     'mepa_id'=>'1',
     'caja_valor'=>'85000']
