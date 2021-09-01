@@ -12,8 +12,7 @@ function controlMEPA($json){
         switch ($json['idOp']){
             case '1010'; //INSERTAR MEDIO DE PAGO
                 $result = insertMedioDePago($json);
-                if($result){              
-                  
+                if($result){                 
                 $replyServerUS['msg'] = "Se ha insertado correctamente";
                 $replyServerUS['information'] = $result;
                 $replyServerUS['status'] = 1;                    
@@ -31,19 +30,23 @@ function controlMEPA($json){
             break;
             case '3030'; //SELECIONAR UN MEDIO DE PAGO
                 $result = selectMedioDePago($json,1);
-                if($result){                  
-                $replyServerUS['msg'] = "Se ha Actualido correctamente";
+                if(!$result['mepa_id'] == ''){                
+                $replyServerUS['msg'] = "Se ha Consultado correctamente";
                 $replyServerUS['information'] = $result;
                 $replyServerUS['status'] = 1;                    
+            }else{
+                $replyServerUS['msg'] = "Sin registros de metodo de pago";
             }
             return $replyServerUS;
             break;
             case '4040'; //SELECIONAR TODOS 
                 $result = selectMedioDePago($json,2);
-                if($result){                  
-                $replyServerUS['msg'] = "Se ha consultado correctamente";
+                if(!$result[0]['mepa_id'] == ''){                  
+                $replyServerUS['msg'] = "Se ha Consultado correctamente";
                 $replyServerUS['information'] = $result;
                 $replyServerUS['status'] = 1;                    
+            }else {
+                $replyServerUS['msg'] = "Sin registros de metodo de pago";
             }
             return $replyServerUS;
             break;
@@ -53,6 +56,8 @@ function controlMEPA($json){
                 $replyServerUS['msg'] = "Se ha Eliminado correctamente";
                 $replyServerUS['information'] = $result;
                 $replyServerUS['status'] = 1;                    
+            }else{
+                $replyServerUS['msg'] = "Sin registros de metodo de pago";
             }
             return $replyServerUS;
             break;
