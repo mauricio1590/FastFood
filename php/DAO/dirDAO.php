@@ -23,14 +23,16 @@ function updateDIR($json)
     include_once './resources/conexion.php';
 
     try {
-        $update = "UPDATE direccion SET
+        $update = "UPDATE  direccion SET
                 dir_direccion = '" . $json['information']['aux_texto'] . "',
                 dir_observaciones = '" . $json['information']['aux_observaciones'] . "',
                 per_id='" . $json['information']['per_id'] . "'
                 WHERE dir_id='" . $json['information']['aux_id'] . "';";
 
         $update = mysqli_query($conection, $update);
+        echo $update;
         return $update;
+        
     } catch (\Throwable $th) {
         var_dump($th);
     }
@@ -69,9 +71,11 @@ function selectDIR($json, $tipo)
     try {
 
         $SELECT = mysqli_query($conection, $SELECT);
+        $validado= false;
         $direccion = null;
         $direcciones = null;
         while ($row = mysqli_fetch_assoc($SELECT)) {
+            $validado = true;
             $direccion = array(
                 "dir_id" => $row['dir_id'],
                 "dir_direccion" => $row['dir_direccion'],
@@ -80,10 +84,20 @@ function selectDIR($json, $tipo)
             );
             $direcciones[]=$direccion;
         }
-
+        if ($validado == false){
+            $direccion = array(
+                "dir_id" => '',
+                "dir_direccion" => '',
+                "dir_observaciones" =>'',
+                "per_id" => '',
+            );
+            $direcciones[]=$direccion;
+        }
         if($tipo ==1){
+            
             return $direccion;
-        }else{
+        }else{        
+            
             return $direcciones;
         }
 
