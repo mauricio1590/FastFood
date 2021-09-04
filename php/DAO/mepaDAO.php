@@ -41,11 +41,11 @@ function selectMedioDePago($json,$tipo){
         }else{
             $SELECT = "SELECT * FROM metodo_pago ;";
         }
-        
         $SELECT =  mysqli_query($conection,$SELECT);
-        $i=0;
+        $datos = false;
         $metodos = [];
         while($row = mysqli_fetch_assoc($SELECT)){
+            $datos = true;
             if($tipo == '1'){
                 $metodo['mepa_id'] = $row['mepa_id'];
                 $metodo['mepa_nombre'] = $row['mepa_nombre'];
@@ -57,12 +57,16 @@ function selectMedioDePago($json,$tipo){
                 $metodo['mepa_descripcion'] = $row['mepa_descripcion'];
                 $metodo['mepa_id'] = $row['mepa_id'];
                 array_push($metodos,$metodo);
-            }
-           
-            
+            }         
         }
 
-
+        if ($datos == false){
+            $metodo['mepa_id'] = '';
+            $metodo['mepa_nombre'] = '';
+            $metodo['mepa_descripcion'] = '';
+            $metodo['mepa_id'] = '';
+            array_push($metodos,$metodo);
+        }
         if($tipo == '1'){
             return $metodo;
         }else{

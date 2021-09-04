@@ -38,7 +38,9 @@ function selectMesa($json,$tipo){
         }
         $SELECT = mysqli_query($conection, $SELECT);
         $mesas = [];
+        $datos = false;
         while($row = mysqli_fetch_assoc($SELECT)){
+            $datos = true;
            if($tipo == 1){
             $mesa['mes_id'] = $row['mes_id'];
             $mesa['mes_nombre'] = $row['mes_observaciones'];
@@ -49,6 +51,12 @@ function selectMesa($json,$tipo){
             $mesa['mes_observaciones'] = $row['mes_observaciones'];
             array_push($mesas,$mesa);
            }
+        }
+        if($datos == false){
+            $mesa['mes_id'] = '';
+            $mesa['mes_nombre'] = '';
+            $mesa['mes_observaciones'] = '';
+            array_push($mesas,$mesa);
         }
         if($tipo == '1'){
             return $mesa;

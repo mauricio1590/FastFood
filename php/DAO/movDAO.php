@@ -20,8 +20,8 @@ function updateMOV ($json){
         include_once('./resources/conexion.php');
         $update="UPDATE movimiento SET 
                 mov_nombre = '".$json['information']['mov_nombre']."',
-                mov_descripcion='".$json['information']['mov_descripcion']."'
-                WHERE mov_id='".$json['information']['mov_id']."';";
+                mov_descripcion ='".$json['information']['mov_descripcion']."'
+                WHERE mov_id = '".$json['information']['mov_id']."';";
              
         $update = mysqli_query($conection,$update);
         return $update;
@@ -41,8 +41,10 @@ function selectMOV($json,$tipo){
         
         $SELECT =  mysqli_query($conection,$SELECT);
         $i=0;
+        $datos = false;
         $movimientos = [];
         while($row = mysqli_fetch_assoc($SELECT)){
+            $datos = true;
             if($tipo == '1'){
                 $movimiento['mov_id'] = $row['mov_id'];
                 $movimiento['mov_nombre'] = $row['mov_nombre'];               
@@ -53,6 +55,12 @@ function selectMOV($json,$tipo){
                 $movimiento['mov_descripcion'] = $row['mov_descripcion'];
                 array_push($movimientos,$movimiento);
             }                 
+        }
+        if ( $datos == false){
+                $movimiento['mov_id'] = '';
+                $movimiento['mov_nombre'] = '';
+                $movimiento['mov_descripcion'] = '';
+                array_push($movimientos,$movimiento);
         }
         if($tipo == '1'){
             return $movimiento;

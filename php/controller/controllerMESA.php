@@ -30,19 +30,24 @@ function controlMESA($json){
                 break;
             case '3030': 
                 $result = selectMesa($json,1);
-                if($result){                  
+                if(!$result['mes_id'] == ''){                  
                     $replyServerUS['msg'] = "Consulta por mesa Correcta";
                     $replyServerUS['information'] = $result;
                     $replyServerUS['status'] = 1;                    
+                }else {
+                    $replyServerUS['msg'] = "Sin registros de mesa";
                 }
+
                 return $replyServerUS;
                 break;
             case '4040': 
                 $result = selectMesa($json,2);
-                if($result){                  
+                if(!$result[0]['mes_id'] == ''){                  
                     $replyServerUS['msg'] = "Consulta por mesa Correcta";
                     $replyServerUS['information'] = $result;
                     $replyServerUS['status'] = 1;                    
+                } else {
+                    $replyServerUS['msg'] = "Sin registros de mesa";
                 }
                 return $replyServerUS;
                 break;

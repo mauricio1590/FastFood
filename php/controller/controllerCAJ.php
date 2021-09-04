@@ -21,30 +21,43 @@ function controlCAJ($json){
                 break;
             case '3030':  //SELECCIONAR TODOS LOS REGISTROS DE UN USUARIO
                 $result = selectAllCaja($json,1);
-                $replyServerUS['msg'] = "Se ha Actualizado correctamente";
-                $replyServerUS['information'] = $result;
-                $replyServerUS['status'] = 1;
+                if (!$result[0]['caja_id'] == ''){
+                    $replyServerUS['msg'] = "Se ha listado correctamente";
+                    $replyServerUS['information'] = $result;
+                    $replyServerUS['status'] = 1;
+                    }else{
+                        $replyServerUs['msg'] = "Sin registros de Caja";
+                    }
+               
                 return $replyServerUS;
                 break;
             case '4040':  //SELECCIONAR TODOS REGISTROS 
                 $result = selectAllCaja($json,2);
+                if (!$result[0]['caja_id'] == ''){
                 $replyServerUS['msg'] = "Se ha listado correctamente";
                 $replyServerUS['information'] = $result;
                 $replyServerUS['status'] = 1;
+                }else{
+                    $replyServerUs['msg'] = "Sin registros de Caja";
+                }
                 return $replyServerUS;
                 break;
             case '8080': // Eliminar registros por usuario
                 $result = deleteCaja($json,1);
+                if($result){       
                 $replyServerUS['msg'] = "Se ha listado correctamente";
                 $replyServerUS['information'] = $result;
                 $replyServerUS['status'] = 1;
+                }
                 return $replyServerUS;
                 break;
             case '9090': // Eliminar caja all
                 $result = deleteCaja($json,2);
+                if($result){       
                 $replyServerUS['msg'] = "Se han Eliminado Todos los registos correctamente";
                 $replyServerUS['information'] = $result;
                 $replyServerUS['status'] = 1;
+                }
                 return $replyServerUS;
                 break;
             default:

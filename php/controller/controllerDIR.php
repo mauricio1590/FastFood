@@ -29,9 +29,11 @@
                         return $replyServerUs;
                 case '3030': //ELIMINAR
                         $result = deleteDIR($json);
-                        $replyServerUs['msg'] = "Se ha Eliminado la dirección";
-                        $replyServerUs['information'] = $result;
-                        $replyServerUs['status'] = 1;
+                        if($result){
+                            $replyServerUs['msg'] = "Se ha Eliminado la dirección";
+                            $replyServerUs['information'] = $result;
+                            $replyServerUs['status'] = 1;
+                        }
                         return $replyServerUs;
                 case '4040': //Consultar
                     $result = selectDIR($json, 1);

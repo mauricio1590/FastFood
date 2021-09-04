@@ -72,8 +72,10 @@ function consultarTEL($json, $tipo)
 
         $SELECT = mysqli_query($conection, $SELECT);
         $telefono = null;
-        $telefonos = null;
+        $telefonos = [];
+        $datos = false;
         while ($row = mysqli_fetch_assoc($SELECT)) {
+            $datos = true;
             $telefono = array(
                 "tel_id" => $row['tel_id'],
                 "tel_telefono" => $row['tel_telefono'],
@@ -82,12 +84,20 @@ function consultarTEL($json, $tipo)
             );
             $telefonos[] = $telefono;
         }
-
-        if ($tipo == 1) {
-            return $telefono;
-        } else {
-            return $telefonos;
+        if ($datos == false){
+            $telefono['tel_id'] = '';
+            $telefono['tel_telefono'] = '';
+            $telefono['tel_observaciones'] = '';
+            $telefono['per_id'] = '';
+            array_push($telefonos, $telefono);
+            
         }
+        
+        if($tipo == '1'){
+           return $telefono;       
+        } else {
+           return $telefonos;
+        }   
 
     } catch (\Throwable $th) {
         var_dump($th);
@@ -105,3 +115,5 @@ function deleteTEL($json)
         var_dump($th);
     }
 }
+
+

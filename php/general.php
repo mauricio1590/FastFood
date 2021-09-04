@@ -25,6 +25,7 @@ include_once "Controller/controllerMOV.php";
 717171 = Metodo de pago
 727272 = Metodo de pago
 737373 = Mesa
+747474 = pedido
 909090 = Caja
  */
 /* ID de operaciones (idOp)
@@ -35,15 +36,18 @@ include_once "Controller/controllerMOV.php";
 5050 = VALIDAR
  */
 $json = [
-    'idOp'=>'4040' ,
-    'idUrl'=> "707070",
+    'idOp'=>'3030' ,
+    'idUrl'=> "303030",
     'information' => [
-    'aux_id'=>'13',
-    'aux_texto'=>'calle 2 av 5',
-    'per_id'=>'4',
-    'aux_observaciones'=>'DIRECCION NUEVA',
-    'mepa_id'=>'1',
-    'caja_valor'=>'85000']
+    'ped_id'=>'1',
+    'mes_id'=>'2',
+    'per_id'=>'2',
+    'usu_id'=>'2',
+    'ped_estado'=>'1',
+    'ped_fecha'=>'2020-09-03',
+    'ped_observaciones'=>'pedido para la mesa',
+    'ped_domicilio'=>'0',
+    'dir_id'=>'0']
  ];
 
 
@@ -53,7 +57,7 @@ switch ($json['idUrl']) {
     case '202020':
         return print_r(json_encode(controlPER($json)));
     case '303030':
-        // return print_r(json_encode(controlPED($json)));
+        return print_r(json_encode(controlPED($json)));
     case '404040':
         return print_r(json_encode(controlCAR($json)));
     case '505050':

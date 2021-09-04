@@ -29,20 +29,24 @@ function controlMOV($json){
                 break;
             case '3030'; //LIA¿STAR MOVIMIENTO
                 $result = selectMOV($json,1);
-                if($result){                  
+                if(!$result['mov_id'] == ''){                  
                 $replyServerUS['msg'] = "Se ha listado correctamente";
                 $replyServerUS['information'] = $result;
                 $replyServerUS['status'] = 1;                    
-            }
+                }else{
+                    $replyServerUS['msg'] = "Sin registros de Movimientos";
+                }
                 return $replyServerUS;
                 break;
             case '4040'; //LISTAR TODOS
                 $result = selectMOV($json,2);
-                if($result){                  
-                $replyServerUS['msg'] = "Se ha Listado correctamente";
-                $replyServerUS['information'] = $result;
-                $replyServerUS['status'] = 1;                    
-            }
+                if(!$result[0]['mov_id'] == ''){                  
+                    $replyServerUS['msg'] = "Se ha listado correctamente";
+                    $replyServerUS['information'] = $result;
+                    $replyServerUS['status'] = 1;                    
+                }else{
+                    $replyServerUS['msg'] = "Sin registros de Movimientos";
+                }
                 return $replyServerUS;
                 break;
             case '8080'; //ELIMINAR MOVIMIENTO
