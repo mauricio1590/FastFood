@@ -12,35 +12,35 @@ function controlPED($json){
     if(isset($json['idOp'])){
         switch ($json['idOp']) { //Segun operación
             case '1010': //Insertar PEDIDO
-                if(!empty($json['information']['mes_id'])){
-                    if(!empty($json['information']['per_id'])){
-                        if(!empty($json['information']['usu_id'])){
-                            if(!empty($json['information']['ped_estado'])){
-                                if(!empty($json['information']['ped_domicilio']['indicador'])){
-                                    $result = insertPED($json);
-                                    if($result){
-                                        $replyServerUs['msg'] = "Pedido insertado correctamente.";
-                                    }else{
-                                        $replyServerUs['msg'] = "Se ha presentado un error al insertar el pedido.";
-                                    }
-                                }else{
-                                    $replyServerUs['msg'] = "Falta especificar si es domicilio";    
-                                }
-                            }else{
-                                $replyServerUs['msg'] = "Falta el estado";
-                            }
-                        }else{
-                            $replyServerUs['msg'] = "Falta seleccionar el usuario";
-                        }
-                    }else{
-                        $replyServerUs['msg'] = "Falta seleccionar la persona";
-                    }
+                $result = insertPED($json);
+                if($result){                  
+                $replyServerUS['msg'] = "Se ha insertado correctamente";
+                $replyServerUS['information'] = $result;
+                $replyServerUS['status'] = 1;        
+               }
+               return $replyServerUS;
+            case '2020': //Validar
+                $result = updatePED($json);
+                
+                if($result){                  
+                $replyServerUS['msg'] = "Se ha Actualizado correctamente";
+                $replyServerUS['information'] = $result;
+                $replyServerUS['status'] = 1;        
+               }
+               return $replyServerUS;
+            case '3030': //Validar
+                $result = selectPED($json,1); // listar pedido por id
+                           
+                 if(!$result['ped_id']==''){                  
+                 $replyServerUS['msg'] = "Se listado  correctamente";
+                 $replyServerUS['information'] = $result;
+                 $replyServerUS['status'] = 1;        
                 }else{
-                    $replyServerUs['msg'] = "Falta seleccionar la mesa";
+                    echo json_encode($result['mes_id']);    
+                 $replyServerUS['msg'] = "No se encontro el pedido";
+                 
                 }
-                break;
-            case '5050': //Validar
-                break;
+               return $replyServerUS;
             default:
                 echo "Objeto no localizado.";
         }

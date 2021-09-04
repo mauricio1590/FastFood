@@ -56,6 +56,12 @@ function selectMOV($json,$tipo){
                 array_push($movimientos,$movimiento);
             }                 
         }
+        if ( $datos == false){
+                $movimiento['mov_id'] = '';
+                $movimiento['mov_nombre'] = '';
+                $movimiento['mov_descripcion'] = '';
+                array_push($movimientos,$movimiento);
+        }
         if($tipo == '1'){
             return $movimiento;
         }else{

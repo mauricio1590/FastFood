@@ -45,7 +45,7 @@ function controlMOV($json){
                     $replyServerUS['information'] = $result;
                     $replyServerUS['status'] = 1;                    
                 }else{
-                        $replyServerUS['msg'] = "Sin registros de Movimientos";
+                    $replyServerUS['msg'] = "Sin registros de Movimientos";
                 }
                 return $replyServerUS;
                 break;
