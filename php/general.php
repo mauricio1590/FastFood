@@ -37,16 +37,16 @@ include_once "Controller/controllerDETPE.php";
 5050 = VALIDAR
  */
 $json = [
-    'idOp'=>'1010' ,
+    'idOp'=>'4040' ,
     'idUrl'=> "747474",
     'information' => [
     'ped_id'=>'1',
-    'car_id'=>'2',
-    'depe_cantidad'=>'2',
-    'depe_valor'=>'20000',
+    'car_id'=>'9',
+    'depe_cantidad'=>'5',
+    'depe_valor'=>'25000',
     'depe_estado'=>'2',
     'ped_estado'=>'1',
-    'ped_fecha'=>'2020-09-03',
+    'depe_id'=>'3',
     'ped_observaciones'=>'pedido para la mesa',
     'ped_domicilio'=>'0',
     'dir_id'=>'0']
