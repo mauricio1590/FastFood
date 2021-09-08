@@ -46,8 +46,11 @@ function selectPED($json,$tipo){
         include_once('./resources/conexion.php');
         $SELECT = "SELECT pd.ped_id,
                           pd.mes_id,
+                          me.mes_nombre,
                           pd.per_id,
+                          CONCAT(pe.per_nombre1,' ',pe.per_apellido1) AS nombre,
                           pd.usu_id,
+                          us.usu_usuario,
                           pd.ped_estado,
                           pd.ped_fecha,
                           pd.ped_observaciones,
@@ -62,7 +65,6 @@ function selectPED($json,$tipo){
         if($tipo == 1){
             $SELECT =  $SELECT." AND pd.ped_id = ".$json['information']['ped_id'].";";
         }
-        
         $pedidos=[];
         $datos = false;
         $SELECT = mysqli_query($conection,$SELECT);
@@ -70,8 +72,11 @@ function selectPED($json,$tipo){
             $datos = true;
             $pedido['ped_id'] = $row['ped_id'];
             $pedido['mes_id'] = $row['ped_id'];
+            $pedido['mes_nombre'] = $row['mes_nombre'];
             $pedido['per_id'] = $row['ped_id'];
+            $pedido['nombre'] = $row['nombre'];
             $pedido['usu_id'] = $row['ped_id'];
+            $pedido['usu_usuario'] = $row['usu_usuario'];
             $pedido['ped_estado'] = $row['ped_id'];
             $pedido['ped_fecha'] = $row['ped_id'];
             $pedido['ped_observaciones'] = $row['ped_id'];
@@ -81,6 +86,7 @@ function selectPED($json,$tipo){
         if($datos == false){
             $pedido['ped_id'] = '';
             $pedido['mes_id'] = '';
+            $pedido['mes_nombre']='';
             $pedido['per_id'] = '';
             $pedido['usu_id'] = '';
             $pedido['ped_estado'] = '';

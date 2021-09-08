@@ -9,6 +9,7 @@ include_once "Controller/controllerCAJ.php";
 include_once "Controller/controllerMESA.php";
 include_once "Controller/controllerMEPA.php";
 include_once "Controller/controllerMOV.php";
+include_once "Controller/controllerDETPE.php";
 
 // $json = $_POST['dataJSON'];
 
@@ -25,7 +26,7 @@ include_once "Controller/controllerMOV.php";
 717171 = Metodo de pago
 727272 = Metodo de pago
 737373 = Mesa
-747474 = pedido
+747474 = detalle pedido
 909090 = Caja
  */
 /* ID de operaciones (idOp)
@@ -36,15 +37,16 @@ include_once "Controller/controllerMOV.php";
 5050 = VALIDAR
  */
 $json = [
-    'idOp'=>'3030' ,
-    'idUrl'=> "303030",
+    'idOp'=>'4040' ,
+    'idUrl'=> "747474",
     'information' => [
     'ped_id'=>'1',
-    'mes_id'=>'2',
-    'per_id'=>'2',
-    'usu_id'=>'2',
+    'car_id'=>'9',
+    'depe_cantidad'=>'5',
+    'depe_valor'=>'25000',
+    'depe_estado'=>'2',
     'ped_estado'=>'1',
-    'ped_fecha'=>'2020-09-03',
+    'depe_id'=>'3',
     'ped_observaciones'=>'pedido para la mesa',
     'ped_domicilio'=>'0',
     'dir_id'=>'0']
@@ -72,6 +74,8 @@ switch ($json['idUrl']) {
         return print_r(json_encode(controlMOV($json)));
     case '737373':
         return print_r(json_encode(controlMESA($json)));
+    case '747474':
+        return print_r(json_encode(controlDETPE($json)));
     case '909090':
         return print_r(json_encode(controlCAJ($json)));
     default:
