@@ -28,8 +28,8 @@ function controlPED($json){
                 $replyServerUS['status'] = 1;        
                }
                return $replyServerUS;
-            case '3030': //Validar
-                $result = selectPED($json,1); // listar pedido por id
+            case '5050': //Validar
+                $result = selectPED($json,3); // listar pedido por id
                            
                  if(!$result['ped_id']==''){                  
                  $replyServerUS['msg'] = "Se listado  correctamente";
