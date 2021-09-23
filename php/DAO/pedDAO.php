@@ -71,7 +71,7 @@ function selectPED($json,$tipo){
         while($row = mysqli_fetch_assoc($SELECT)) {
             $datos = true;
             $pedido['ped_id'] = $row['ped_id'];
-            $pedido['mes_id'] = $row['ped_id'];
+            $pedido['mes_id'] = $row['mes_id'];
             $pedido['mes_nombre'] = $row['mes_nombre'];
             $pedido['per_id'] = $row['ped_id'];
             $pedido['nombre'] = $row['nombre'];
